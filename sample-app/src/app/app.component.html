@@ -1,0 +1,50 @@
+<h1>New Task:</h1>
+
+<form (submit)="onSubmit()" >
+      <p> {{ newTask | json }} </p>
+      <input type="text" name="newTask.title" [(ngModel)]="newTask.title" />
+      <input type="text" name="newTask.description" [(ngModel)]="newTask.description" />
+      <input type="submit" value="Create Task" />
+</form>
+
+
+<div class="container">
+  <h1>Task List:</h1>
+  <ul>
+    <li *ngFor="let task of tasks">
+      <h2>{{task.title}}: </h2>
+      <p>{{task.description}}</p>
+      <button (click)="onButtonClickupdate(task._id)">Edit</button>
+
+      <button (click)="onButtonClickdelete(task._id)">Delete</button>
+    </li>
+  </ul>
+
+</div>
+
+<div *ngIf="update" > 
+ <h1>Edit Task</h1> 
+
+
+
+  <form (submit)="onUpdate(update.tasks._id)"> 
+      <p> {{ update | json }} </p>
+<!-- <p> {{update.title}}</p>
+<p> {{update}}</p> -->
+
+      <input type="text" name="update.tasks.title" [(ngModel)]="update.tasks.title" placeholder="{{update.tasks.title}}"  />  
+      <input type="text" name="update.tasks.description" [(ngModel)]="update.tasks.description" placeholder="{{update.tasks.description}}" />
+      <input type="submit" value="Update Task" />
+  </form>
+
+
+ 
+</div> 
+
+
+
+
+
+
+
+
